@@ -1,0 +1,9 @@
+syntax = "proto3";
+package local;
+import "messages/messages.proto";
+
+message PublishMessage {
+	string Feed = 1;
+	messages.Item Item = 2;
+}
+

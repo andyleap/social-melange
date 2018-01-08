@@ -1,0 +1,52 @@
+syntax = "proto3";
+package messages;
+option go_package = "github.com/andyleap/social-melange/proto/messages";
+
+import "any/any.proto";
+
+enum KeyKind {
+	ED25519 = 0;
+}
+
+message Signer {
+	KeyKind Kind = 1;
+	bytes Key = 2;
+}
+
+message Feed {
+	Signer Signer = 1;
+	string Name = 2;
+}
+
+message FeedChange {
+	uint64 Sequence = 1;
+	Ref Ref = 2;
+	repeated uint64 Delete = 3;
+}
+
+message SignedFeedChange {
+	FeedChange FeedChange = 1;
+	bytes Signature = 2;
+}
+
+enum Algo {
+	SHA3_512 = 0;
+}
+
+message Ref {
+	Algo Algo = 1;
+	bytes Hash = 2;
+	string Name = 3;
+	repeated string Tag = 4;
+}
+
+message Item {
+	Signer Author = 1;
+	any.Any Message = 3;
+	repeated Ref Refs = 5;
+}
+
+message SignedItem {
+	Item Item = 1;
+	bytes Signature = 2;
+}

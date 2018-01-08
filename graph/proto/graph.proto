@@ -1,0 +1,11 @@
+syntax = "proto3";
+package graph;
+import "messages/messages.proto";
+
+message Follow {
+	messages.Signer Follow = 1;
+}
+
+message Block {
+	messages.Signer Block = 1;
+}

@@ -1,0 +1,32 @@
+syntax = "proto3";
+package replication;
+option go_package = "github.com/andyleap/social-melange/proto/replication";
+
+import "messages/messages.proto";
+
+message SignerRequest {
+	messages.Signer Signer = 1;
+	map<string, uint64> Feeds = 2;
+}
+
+message SignerUpdate {
+	map<string, uint64> Feeds = 1;
+}
+
+message FeedRangeRequest {
+	messages.Feed Feed = 1;
+	uint64 Start = 2;
+	uint64 Stop = 3;
+}
+
+message FeedRangeResponse {
+	map<uint64, messages.SignedFeedChange> FeedChanges = 1;
+}
+
+message ItemRequest {
+	messages.Ref Ref = 1;
+}
+
+message ItemResponse {
+	messages.SignedItem Item = 1;
+}

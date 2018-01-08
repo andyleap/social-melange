@@ -1,0 +1,8 @@
+syntax = "proto3";
+package any;
+option go_package = "github.com/andyleap/social-melange/proto/any";
+
+message Any {
+	string Type = 1;
+	bytes Value = 2;
+}

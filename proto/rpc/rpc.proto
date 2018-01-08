@@ -1,0 +1,24 @@
+syntax = "proto3";
+package rpc;
+option go_package = "github.com/andyleap/social-melange/proto/rpc";
+
+import "any/any.proto";
+
+message Request {
+	uint64 ID = 1;
+	any.Any Request = 2;
+}
+
+message Response {
+	uint64 ID = 1;
+	any.Any Response = 2;
+	bool End = 3;
+	string Error = 4;
+}
+
+message Packet {
+	oneof packet {
+		Request Request = 1;
+		Response Response = 2;
+	}
+}
